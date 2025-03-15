@@ -12,7 +12,6 @@ const DocumentItem = ({ doc, onUpdate, onDelete }) => {
 
   const isPDF = doc.type === "application/pdf";
 
-  // View PDF or file
   const handleView = () => {
     const byteCharacters = atob(doc.fileData.split(",")[1]);
     const byteNumbers = new Array(byteCharacters.length)
@@ -24,7 +23,6 @@ const DocumentItem = ({ doc, onUpdate, onDelete }) => {
     window.open(url, "_blank");
   };
 
-  // Save changes
   const handleSave = () => {
     if (typeof onUpdate === "function" && editName.trim() && editDescription.trim()) {
       onUpdate(doc.id, { name: editName, description: editDescription });
@@ -71,7 +69,7 @@ const DocumentItem = ({ doc, onUpdate, onDelete }) => {
         {doc.description}
       </p>
 
-      {doc.description.length > 100 && ( // Show button only if the text is long
+      {doc.description.length > 100 && (
         <button
           onClick={() => setIsExpanded(!isExpanded)}
           className="text-blue-500 mt-2"

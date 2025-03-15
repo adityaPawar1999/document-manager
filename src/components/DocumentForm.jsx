@@ -7,7 +7,6 @@ const DocumentForm = ({ onUpload }) => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState("");
 
-  // Handle file selection
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
 
@@ -16,7 +15,6 @@ const DocumentForm = ({ onUpload }) => {
       return;
     }
 
-    // Validate file type
     const allowedTypes = ["application/pdf", "image/jpeg", "image/png"];
     if (!allowedTypes.includes(selectedFile.type)) {
       setError("Only PDF, JPEG, and PNG files are allowed.");
@@ -28,7 +26,6 @@ const DocumentForm = ({ onUpload }) => {
     setFile(selectedFile);
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -45,7 +42,7 @@ const DocumentForm = ({ onUpload }) => {
         name: documentName,
         description,
         fileData: reader.result,
-        type: file.type, // Store file type
+        type: file.type, 
       };
 
       onUpload(documentData);
