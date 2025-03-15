@@ -27,12 +27,22 @@ export const deleteDocument = (id) => {
 // Clear all documents (optional)
 export const clearDocuments = () => {
   localStorage.removeItem(STORAGE_KEY);
-};
-const handleUpload = (doc) => {
-  const metadata = { id: doc.id, name: doc.name, description: doc.description, fileUrl: doc.fileUrl };
-  const updatedDocuments = [...documents, metadata];
+};const handleUpload = (doc) => {
+  const metadata = {
+    id: doc.id,
+    name: doc.name,
+    description: doc.description,
+    fileUrl: doc.fileUrl, // Store only the file URL, not its content
+  };
 
+  const updatedDocuments = [...documents, metadata];
   setDocuments(updatedDocuments);
-  localStorage.setItem("documents", JSON.stringify(updatedDocuments)); // Store only metadata
+
+  try {
+    localStorage.setItem("documents", JSON.stringify(updatedDocuments)); 
+  } catch (error) {
+    console.error("LocalStorage quota exceeded:", error);
+  }
 };
+
 
