@@ -28,3 +28,11 @@ export const deleteDocument = (id) => {
 export const clearDocuments = () => {
   localStorage.removeItem(STORAGE_KEY);
 };
+const handleUpload = (doc) => {
+  const metadata = { id: doc.id, name: doc.name, description: doc.description, fileUrl: doc.fileUrl };
+  const updatedDocuments = [...documents, metadata];
+
+  setDocuments(updatedDocuments);
+  localStorage.setItem("documents", JSON.stringify(updatedDocuments)); // Store only metadata
+};
+
