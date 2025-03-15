@@ -42,7 +42,7 @@ const App = () => {
           <DocumentForm onUpload={handleUpload} />
         </div>
 
-        <div className="lg:col-span-3 p-4 bg-white shadow-md rounded-md overflow-y-auto max-h-[calc(90vh-4rem)]">
+        <div className="lg:col-span-3 p-4 bg-white shadow-md rounded-md overflow-y-auto max-h-[calc(90vh-4rem)] mt-4 md:mt-0">
           <DocumentList documents={documents} onUpdate={handleUpdate} onDelete={handleDelete} />
         </div>
 
